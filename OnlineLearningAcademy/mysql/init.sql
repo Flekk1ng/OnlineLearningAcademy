@@ -24,7 +24,7 @@ create table courses
 (
 	id int NOT NULL AUTO_INCREMENT,
 	area_of_study_id int NOT NULL,
-	name varchar(255) NOT NULL,
+	name varchar(255) NOT NULL UNIQUE,
     description varchar(1000) NOT NULL,
     PRIMARY KEY (id),
 	FOREIGN KEY (area_of_study_id) REFERENCES areas_of_study (id)
@@ -72,6 +72,7 @@ create table enroll_lessons
 	FOREIGN KEY (lesson_id) REFERENCES lessons (id)
 );
 
+--password = 'password'
 INSERT INTO users(email, password, last_name, first_name, role)
 	VALUES ('admin@mail.com', '$2a$12$N9oy4dYcWuxonOQAO54xkuefPptogK1sZkdjRRMdLxcw51r4446Pm', 'Admin', 'Admin', 'ADMIN'),
 		('teacher1@mail.com', '$2a$12$N9oy4dYcWuxonOQAO54xkuefPptogK1sZkdjRRMdLxcw51r4446Pm', 'Smith', 'Olivia', 'TEACHER'),

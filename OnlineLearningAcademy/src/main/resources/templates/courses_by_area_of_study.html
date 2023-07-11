@@ -29,6 +29,9 @@
             <br />
             <div class="row">
                 <div class="col-md-10 mx-auto">
+                    <div class="alert alert-danger" th:if="${errorMessage}">
+                        <span th:text="${errorMessage}"></span>
+                    </div>
                     <div class="card border-dark">
                         <div class="card-body">
                             <div class="card-header">

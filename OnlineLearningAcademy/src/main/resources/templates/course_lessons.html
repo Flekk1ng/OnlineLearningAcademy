@@ -46,6 +46,7 @@
                         <div class="card-body">
                             <div class="card-header">
                                 <h3 class="text-left" th:text="${'List of lessons in the course ' + course.name}"></h3>
+                                <h3 class="text-left" th:text="${'Teachers for this course: ' + teacherNames}"></h3>
                                 <p class="text-left">Click on a lesson to view details or enroll</p>
                             </div>
                             <table class="table" th:if="${not #lists.isEmpty(lessons)}">

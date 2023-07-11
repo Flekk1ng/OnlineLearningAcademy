@@ -86,8 +86,4 @@ public class StudentCourseServiceImpl implements StudentCourseService {
                         student.getEmail(), student.getRole().name())).toList();
     }
 
-    @Override
-    public Long findCountStudentsByCourseId(Long courseId) {
-        return studentCourseRepository.countByCourseId(courseId);
-    }
 }

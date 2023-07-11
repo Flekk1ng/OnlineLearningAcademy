@@ -1,10 +1,6 @@
 package com.flekk.OnlineLearningAcademy.repository;
 
-import com.flekk.OnlineLearningAcademy.Dto.UserDto;
-import com.flekk.OnlineLearningAcademy.Dto.view.CourseAttendanceDto;
 import com.flekk.OnlineLearningAcademy.model.EnrollLesson;
-import com.flekk.OnlineLearningAcademy.model.User;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,5 +1,6 @@
 package com.flekk.OnlineLearningAcademy.Dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -17,13 +18,16 @@ public class UserDto
 {
     private Long id;
     @NotEmpty
+    @NotBlank
     @Size(min = 3)
     private String firstName;
     @NotEmpty
+    @NotBlank
     @Size(min = 3)
     private String lastName;
     private String email;
     @NotEmpty
+    @NotBlank
     private String role;
 
     @Override

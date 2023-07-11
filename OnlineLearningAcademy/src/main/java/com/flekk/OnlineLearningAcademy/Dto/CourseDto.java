@@ -1,6 +1,9 @@
 package com.flekk.OnlineLearningAcademy.Dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,10 +18,14 @@ import java.util.Objects;
 public class CourseDto {
     private Long id;
     @NotEmpty
+    @NotBlank
+    @Size(min = 3)
     private String name;
     @NotEmpty
+    @NotBlank
+    @Size(min = 10)
     private String description;
-    @NotEmpty
+    @NotNull
     private Long areaOfStudyId;
 
     @Override

@@ -6,11 +6,14 @@ import com.flekk.OnlineLearningAcademy.Dto.UserDto;
 import com.flekk.OnlineLearningAcademy.service.CourseService;
 import com.flekk.OnlineLearningAcademy.service.StudentCourseService;
 import com.flekk.OnlineLearningAcademy.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,20 +40,6 @@ public class UserController {
         return "users";
     }
 
-    @PostMapping("/edit")
-    @PreAuthorize("hasAuthority('users:edit')")
-    public String updateUser(@ModelAttribute UserDto userDto) {
-        userService.updateUser(userDto);
-        return "redirect:/user/list";
-    }
-
-    @PostMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('users:edit')")
-    public String updateUser(@PathVariable Long id) {
-        userService.deleteById(id);
-        return "redirect:/user/list";
-    }
-
     @GetMapping("/students")
     @PreAuthorize("hasAuthority('students:read')")
     public String showListStudents(Model model) {
@@ -63,6 +52,36 @@ public class UserController {
         }
         model.addAttribute("courseStudentsList", courseStudentsList);
         return "students";
+    }
+
+    @PostMapping("/edit")
+    @PreAuthorize("hasAuthority('users:edit')")
+    public String updateUser(@Valid @ModelAttribute UserDto userDto, BindingResult result,
+                             RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Fields entered incorrectly");
+            return "redirect:/user/list";
+        }
+
+        try {
+            userService.updateUser(userDto);
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        }
+
+        return "redirect:/user/list";
+    }
+
+    @PostMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('users:edit')")
+    public String deleteUser(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        try {
+            userService.deleteById(id);
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        }
+
+        return "redirect:/user/list";
     }
 
 }

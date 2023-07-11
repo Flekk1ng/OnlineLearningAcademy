@@ -10,5 +10,4 @@ public interface StudentCourseService {
     void removeStudentFromCourse(Long studentId, Long courseId);
     List<CourseDto> findCoursesByStudentId(Long studentId);
     List<UserDto> findStudentsByCourseId(Long courseId);
-    Long findCountStudentsByCourseId(Long courseId);
 }

@@ -1,8 +1,9 @@
 package com.flekk.OnlineLearningAcademy.Dto;
 
-import com.flekk.OnlineLearningAcademy.model.Lesson;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,12 +18,17 @@ import java.util.Objects;
 public class LessonDto {
     private Long id;
     @NotEmpty
+    @NotBlank
+    @Size(min = 3)
     private String topic;
     @NotEmpty
+    @NotBlank
+    @Size(min = 10)
     private String content;
     @NotEmpty
     private String date;
     @NotEmpty
+    @NotBlank
     private String status;
     @NotNull
     private Long courseId;

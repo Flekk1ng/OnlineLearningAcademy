@@ -1,7 +1,6 @@
 package com.flekk.OnlineLearningAcademy.Dto.view;
 
 import com.flekk.OnlineLearningAcademy.Dto.UserDto;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
