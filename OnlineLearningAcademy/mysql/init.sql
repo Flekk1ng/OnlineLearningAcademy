@@ -1,7 +1,4 @@
-CREATE DATABASE online_learning_academy;
-use online_learning_academy;
-
-create table users
+create table if not exists users
 (
     id int NOT NULL AUTO_INCREMENT,
     email varchar(255) NOT NULL UNIQUE,
@@ -12,7 +9,7 @@ create table users
     PRIMARY KEY (id)
 );
 
-create table areas_of_study
+create table if not exists areas_of_study
 (
 	id int NOT NULL AUTO_INCREMENT,
     name varchar(255) NOT NULL,
@@ -20,7 +17,7 @@ create table areas_of_study
     PRIMARY KEY (id)
 );
 
-create table courses 
+create table if not exists courses 
 (
 	id int NOT NULL AUTO_INCREMENT,
 	area_of_study_id int NOT NULL,
@@ -30,7 +27,7 @@ create table courses
 	FOREIGN KEY (area_of_study_id) REFERENCES areas_of_study (id)
 );
 
-create table lessons 
+create table if not exists lessons 
 (
   	id int NOT NULL AUTO_INCREMENT,
 	course_id int NOT NULL,
@@ -42,7 +39,7 @@ create table lessons
 	FOREIGN KEY (course_id) REFERENCES courses (id)
 );
 
-create table teacher_courses 
+create table if not exists teacher_courses 
 (
 	id int NOT NULL AUTO_INCREMENT,
     teacher_id int NOT NULL,
@@ -52,7 +49,7 @@ create table teacher_courses
 	FOREIGN KEY (course_id) REFERENCES courses (id)
 );
 
-create table student_courses 
+create table if not exists student_courses 
 (
 	id int NOT NULL AUTO_INCREMENT,
     student_id int NOT NULL,
@@ -62,7 +59,7 @@ create table student_courses
 	FOREIGN KEY (course_id) REFERENCES courses (id)
 );
 
-create table enroll_lessons
+create table if not exists enroll_lessons
 (
 	id int NOT NULL AUTO_INCREMENT,
 	student_id int NOT NULL,
@@ -72,7 +69,6 @@ create table enroll_lessons
 	FOREIGN KEY (lesson_id) REFERENCES lessons (id)
 );
 
---password = 'password'
 INSERT INTO users(email, password, last_name, first_name, role)
 	VALUES ('admin@mail.com', '$2a$12$N9oy4dYcWuxonOQAO54xkuefPptogK1sZkdjRRMdLxcw51r4446Pm', 'Admin', 'Admin', 'ADMIN'),
 		('teacher1@mail.com', '$2a$12$N9oy4dYcWuxonOQAO54xkuefPptogK1sZkdjRRMdLxcw51r4446Pm', 'Smith', 'Olivia', 'TEACHER'),
