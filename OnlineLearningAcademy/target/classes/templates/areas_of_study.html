@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Online learning academy</title>
+    <div th:replace="~{fragments :: styles}"></div>
+    <style>
+        .scrollable-container {
+            height: calc(100vh - 56px);
+            overflow-y: auto;
+        }
+        body {
+            background-color: #e9e9e9;
+        }
+    </style>
+</head>
+<body>
+<div class="d-flex flex-column">
+    <div th:replace="~{fragments :: navbar}"></div>
+    <div class="d-flex flex-row">
+        <div th:replace="~{fragments :: sidebar('areas_of_study')}"></div>
+        <div class="b-example-divider"></div>
+        <div class="container-fluid scrollable-container">
+            <br />
+            <div class="col-md-10 mx-auto">
+                <div class="card border-dark">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <h3 class="text-left">List of areas of study</h3>
+                            <p class="text-left">Click on the area of study to view the list of courses</p>
+                        </div>
+                        <div class="row gy-4">
+                            <div class="col-4" th:each="areaOfStudy : ${areasOfStudy}">
+                                <div class="card border border-primary h-100">
+                                    <div class="card-header">
+                                        <h5 th:text="${areaOfStudy.name}" class="card-title"></h5>
+                                    </div>
+                                    <div class="card-body h-100">
+                                        <p th:text="${#strings.abbreviate(areaOfStudy.description, 150)}"></p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-end" th:if="${#authorization.expression('hasAuthority(''courses:edit'')')}">
+                                            <a th:href="@{/course/byAreaOfStudy/edit/__${areaOfStudy.id}__}" class="btn btn-primary">Open area</a>
+                                        </div>
+                                        <div class="d-flex justify-content-end" th:if="${#authorization.expression('hasAuthority(''courses:enroll'')')}">
+                                            <a th:href="@{/course/byAreaOfStudy/view/__${areaOfStudy.id}__}" class="btn btn-primary">Open area</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments :: scripts}"></div>
+</body>
+</html>
