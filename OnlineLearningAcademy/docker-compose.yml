@@ -1,6 +1,14 @@
 version: '3'
 services:
+  db:
+    container_name: db
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    ports:
+      - 3306:3306
   app:
+    container_name: app
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,9 +16,3 @@ services:
       - db
     ports:
       - 8080:8080
-  db:
-    build:
-      context: ./mysql
-      dockerfile: Dockerfile
-    ports:
-      - 3306:3306

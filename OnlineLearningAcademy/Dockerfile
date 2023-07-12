@@ -1,4 +1,4 @@
-FROM tomcat:9-jdk17
-RUN rm -rf /usr/local/tomcat/webapps/*
-COPY target/OnlineLearningAcademy-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+FROM openjdk:17
+COPY target/OnlineLearningAcademy-0.0.1-SNAPSHOT.jar /olaapp.jar
+CMD ["sh", "-c", "sleep 30 && java -jar /olaapp.jar"]
 EXPOSE 8080
